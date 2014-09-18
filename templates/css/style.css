@@ -1,0 +1,176 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.cmaps #map-canvas, #cmaps_map_ui {
+    height: 500px;
+    /*width: 500px;*/
+    float: left;
+    position: relative;
+    width: 100%;
+}
+.cmaps #map-canvas {
+    border: 1px solid #B3B3B3;
+}
+.cmaps h1, .cmaps h2 {
+    text-align: center;
+}
+.cmaps .toc {
+    border-left: 1px solid #E5E5E5;
+    padding: 15px;
+    margin-left: 15px;
+}
+.cmaps #cmaps_registration, .cmaps #cmaps_editemail {
+    display: none;
+    float: left;
+    position: absolute;
+    z-index: 1001;
+    margin: auto;
+    left: 0;
+    right: 0;
+    width: 80%;
+    background: white;
+    height: 450px;
+    top: 0;
+    overflow-y: auto;
+    bottom: 0;
+    padding: 30px;
+    border-radius: 10px;
+    background: #FFFFFF;
+    opacity: 1;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+    overflow-x: auto;
+}
+.cmaps #cmaps_map_ui img {
+    border: 0;
+}
+.cmaps #cmaps_notification {
+    position: absolute;
+    z-index: 1001;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 5px;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+    width: 75%;
+}
+.cmaps .success {
+    background: #66CC66;
+    color: #000000;
+}
+.cmaps .error {
+    background: red;
+    color: #FFFFFF;
+}
+.cmaps #cmaps_map_ui #close_registration {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    color: #C3C3C3;
+    font-size: 25px;
+}
+.cmaps #cmaps_map_ui #close_registration:hover {
+    color: #999999;
+}
+.cmaps #cmaps_map_ui h2 {
+    font-size: 23px !important;
+    line-height: 23px !important;
+    color: #626C72 !important;
+    font-weight: bold !important;
+}
+.cmaps .toc_menu label {
+    font-weight: normal;
+}
+
+.cmaps-btn {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.cmaps #menuButton {
+    margin: 5px;
+    width: 50px;
+    cursor: pointer;
+}
+.cmaps .toc-mobile {
+    display: none;
+}
+.cmaps #Captcha .message, .cmaps .bad {
+    border: 1px solid #FF0000;
+    color: #FF0000;
+    border-radius: 5px;
+    padding: 5px;
+}
+.cmaps .heading_error {
+    color: #FF0000;
+}
+.cmaps #cmaps_editemail {
+    height: 200px;
+}
+.cmaps .leaflet-popup-content p {
+    font-size: 12px;
+    text-align: center;
+    margin: 0;
+}
+.cmaps .leaflet-popup-content h2{
+    margin: 2px;
+}
+
+/* CSS3 
+-----*/
+@media (max-width: 480px) {
+    .cmaps {
+        position: relative;
+        top: 0;
+        left: 0;
+        overflow-x: hidden;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        -ms-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        transition: all 0.3s;
+    }
+    .cmaps .toc-mobile {
+        /*background-color: #67b5d1;*/
+        overflow: hidden;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        -ms-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        transition: all 0.3s;
+        width: 75%;
+        position: absolute;
+        height: 100%;
+        right: -100%;
+        padding: 15px;
+        display: block;
+        background-color: #FFFFFF;
+    }
+    .cmaps-btn {
+        display: block;
+    }
+    .cmaps #cmaps_registraton {
+        width: 95%;
+    }
+    .cmaps .toc {
+        display: none;
+    }
+    .cmaps #blanket-mobile {
+        background-color: #000000;
+        opacity: 0.5;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: none;
+    }
+}
+/*-----
+*/
