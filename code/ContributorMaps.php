@@ -56,6 +56,8 @@
                 if(!$memory) {
                     return $this->redirect($this->Link("?action=edit&status=2"));
                 }
+            }else if(Session::get("FormInfo.RegistrationForm_Edit.data")) {
+                $memory = Session::get("FormInfo.RegistrationForm_Edit.data");
             }
             $fields = new FieldList(
                 new TextField('Name', 'Name*'),
@@ -339,7 +341,7 @@
                 $entry->Skills_Math = $data['Skills_Math'];
                 $entry->Skills_Writer = $data['Skills_Writer'];
                 if($errors > 0) {
-                    Session::set("FormInfo.{$form->FormName()}.data", $data);
+                    Session::set("FormInfo.{$form->FormName()}_Edit.data", $data);
                     return $this->redirect($this->Link("?registered=3"));
                 }else{
                     $entry->write();
