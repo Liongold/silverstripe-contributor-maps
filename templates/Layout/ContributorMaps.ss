@@ -30,7 +30,7 @@
                             $RegistrationForm
                             <% else %>
                             <% if $Registered == 2 %><p class="heading_error">We could not register your listing because of some errors. Please fix them and try again. </p><%end_if %>
-                            <% if $Registered == 4 %><p class="heading_error">We could not change your listing because of some errors. Please fix them an try again. </p><% end_if %>
+                            <% if $Registered == 4 %><p class="heading_error">We could not change your listing because of some errors. Please fix them and try again. </p><% end_if %>
                             <p>In order to be listed in the LibreOffice Contributor Maps, just fill in this
                             form and you will be included in the map. Please note that you need to select 
                             a minimum of 1 skill. Please note that the email address you submit will be
