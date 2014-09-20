@@ -154,32 +154,6 @@ function unCheckAll() {
     updateMarkers();
 }
 function isThisShown(skills) {
-    /*var b = ((checkboxes.Base_Mobile.checked && skills.Base)
-        || (checkboxes.Calc_Mobile.checked && skills.Calc)
-        || (checkboxes.Design_Mobile.checked && skills.Design)
-        || (checkboxes.Development_Mobile.checked && skills.Development)
-        || (checkboxes.Documentation_Mobile.checked && skills.Documentation)
-        || (checkboxes.Draw_Mobile.checked && skills.Draw)
-        || (checkboxes.Impress_Mobile.checked && skills.Impress)
-        || (checkboxes.Infrastructure_Mobile.checked && skills.Infrastructure)
-        || (checkboxes.Localisation_Mobile.checked && skills.Localisation)
-        || (checkboxes.Marketing_Mobile.checked && skills.Marketing)
-        || (checkboxes.Math_Mobile.checked && skills.Math)
-        || (checkboxes.Quality_Assurance_Mobile.checked && skills.Quality_Assurance)
-        || (checkboxes.Writer_Mobile.checked && skills.Writer))
-        && ((checkboxes.Base.checked && skills.Base)
-        || (checkboxes.Calc.checked && skills.Calc)
-        || (checkboxes.Design.checked && skills.Design)
-        || (checkboxes.Development.checked && skills.Development)
-        || (checkboxes.Documentation.checked && skills.Documentation)
-        || (checkboxes.Draw.checked && skills.Draw)
-        || (checkboxes.Impress.checked && skills.Impress)
-        || (checkboxes.Infrastructure.checked && skills.Infrastructure)
-        || (checkboxes.Localisation.checked && skills.Localisation)
-        || (checkboxes.Marketing.checked && skills.Marketing)
-        || (checkboxes.Math.checked && skills.Math)
-        || (checkboxes.Quality_Assurance.checked && skills.Quality_Assurance)
-        || (checkboxes.Writer.checked && skills.Writer));*/
     if(document.getElementsByClassName("toc-mobile")[0].style.display === "block") {
         var b = (checkboxes.Base_Mobile.checked && skills.Base)
                 || (checkboxes.Calc_Mobile.checked && skills.Calc)
@@ -220,9 +194,12 @@ function updateMarkers() {
             map.removeLayer(markerArray[i]);
     }
 }
-function showEntryForm() {
+function showEntryForm(called) {
+    if(!called) {
+        showEditForm(true);
+    }
     var div = document.getElementById("cmaps_registration");
-    if(div.style.display === "block") {
+    if(div.style.display === "block" || called) {
         div.style.display = "none";
     }else{
         div.style.display = "block";
@@ -238,9 +215,12 @@ function openSideBar() {
         document.getElementById("blanket-mobile").style.display = "block";
     }
 }
-function showEditForm() {
+function showEditForm(called) {
+    if(!called) {
+        showEntryForm(true);
+    }
     var div = document.getElementById("cmaps_editemail");
-    if(div.style.display === "block") {
+    if(div.style.display === "block" || called) {
         div.style.display = "none";
     }else{
         div.style.display = "block";
