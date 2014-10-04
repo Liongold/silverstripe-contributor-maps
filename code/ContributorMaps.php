@@ -100,6 +100,7 @@
                 $form->loadDataFrom($memory);
             }else{
                 $form->loadDataFrom(Session::get("FormInfo.{$form->FormName()}.data"));
+                Session::clear("FormInfo.{$form->FormName()}.data");
             }
             return $form;
         }
