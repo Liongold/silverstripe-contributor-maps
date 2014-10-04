@@ -98,6 +98,7 @@
             //Load previously submitted data
             if($memory) {
                 $form->loadDataFrom($memory);
+                Session::clear("FormInfo.{$form->FormName()}_Edit.data");
             }else{
                 $form->loadDataFrom(Session::get("FormInfo.{$form->FormName()}.data"));
                 Session::clear("FormInfo.{$form->FormName()}.data");
@@ -342,7 +343,8 @@
                 $entry->Skills_Math = $data['Skills_Math'];
                 $entry->Skills_Writer = $data['Skills_Writer'];
                 if($errors > 0) {
-                    Session::set("FormInfo.{$form->FormName()}_Edit.data", $data);
+                    $name = str_replace("Form_", "", $form->FormName());
+                    Session::set("FormInfo.{$name}_Edit.data", $data);
                     return $this->redirect($this->Link("?registered=3"));
                 }else{
                     $entry->write();
