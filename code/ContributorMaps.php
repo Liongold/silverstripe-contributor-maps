@@ -37,7 +37,8 @@
             'Feedback',
             'Registered',
             'RequestEditForm',
-            'processEditForm'
+            'processEditForm',
+            'DeleteEntry'
         );
         public function RegistrationForm() {
             if($this->request->getVar('key') && $this->request->getVar('token')) {
@@ -232,7 +233,29 @@
                         'Message' => 'Your request to edit your listing has not submitted due to an error. Please try again later. '
                     ));
                 }
-            };
+            }else if($this->request->getVar('action') === "delete") {
+                if($this->request->getVar('status') == 0) {
+                    return new ArrayData(array(
+                        'Status' => 'error',
+                        'Message' => 'Unfortunately, we encountered an error while trying to delete your listing. If this continues to happen, please contact us at hostmaster@documentfoundation.org and mention Libreoffice Contributor Maps and we will try to reply as soon as possible. '
+                    ));
+                }else if($this->request->getVar('status') == 1) {
+                    return new ArrayData(array(
+                        'Status' => 'success',
+                        'Message' => 'You have successfully requested to delete your listing. We have sent you an email containing more information to the address associated with this listing. '
+                    ));
+                }else if($this->request->getVar('status') == 2) {
+                    return new ArrayData(array(
+                        'Status' => 'success',
+                        'Message' => 'Your listing has been successfully deleted. '
+                    ));
+                }else{
+                    return new ArrayData(array(
+                        'Status' => 'error',
+                        'Message' => 'Unfortunately, we cannot delete your listing. Most likely this is happening because your token has expired. Please re-request to delete your listing. '
+                    ));
+                }
+            }
         }
         public function Registered() {
             if($this->request->getVar('registered') == 1) {
@@ -255,7 +278,8 @@
                     new EmailField('Email', 'Email*')
                 ),
                 new FieldList(
-                    new FormAction('processEditRequestForm', 'Request Edit')
+                    new FormAction('processEditRequestForm', 'Request Edit'),
+                    new FormAction('processDeleteRequestForm', 'Request Deletion')
                 ),
                 new RequiredFields(
                     'Email'
@@ -352,6 +376,48 @@
                 }
             }else{
                 return $this->redirect($this->Link("?action=edit&status=3"));
+            }
+        }
+        public function processDeleteRequestForm($data, $form) {
+            $email = $data['Email'];
+            $listing = ContributorMaps_Data::get()->filter(array(
+                'Email' => $email
+            ))->First();
+            if($listing) {
+                $email = $listing->Email;
+                $key = $listing->Unique_Key;
+                $token = md5(uniqid(mt_rand(), true));
+                $listing->EditToken = $token;
+                $listing->EditTokenExpires = date('Y-m-d', strtotime('+1 day'));
+                $listing->write();
+                $subject = "LibreOffice Contributor Maps - Listing Deletion";
+                $body = "We have received a request from you to delete your listing. "
+                        ."If you have made this request, please proceed by going to"
+                        ." http://vm-1.liongold.kd.io/silverstripe/SilverStripe-cms-"
+                        ."v-3.1.5/new-contributor-maps/DeleteEntry?key=".$key."&token=".$token
+                        ." If you did not make this request, you can ignore this email."
+                        ." Please note that this link will expire after 24 hours from "
+                        ."the time of the request. ";
+                $email = new Email("hostmaster@documentfoundation.org", $email, $subject, $body);
+                $email->send();
+                return $this->redirect($this->Link("?action=delete&status=1"));
+            }else{
+                return $this->redirect($this->Link("?action=delete&status=0"));
+            }
+        }
+        public function DeleteEntry($request) {
+            $key = $request->getVar('key');
+            $token = $request->getVar('token');
+            $entry = ContributorMaps_Data::get()->filter(array(
+                'Unique_Key' => $key,
+                'EditToken' => $token,
+                'EditTokenExpires:GreaterThanOrEqual' => date('Y-m-d')
+            ))->First();
+            if($entry) {
+                $entry->delete();
+                return $this->redirect($this->Link("?action=delete&status=2"));
+            }else{
+                return $this->redirect($this->Link("?action=delete&status=3"));
             }
         }
     }

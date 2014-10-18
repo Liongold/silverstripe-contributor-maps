@@ -40,7 +40,7 @@
                         </div>
                         <div id="cmaps_editemail">
                             <a id="close_registration" href="javascript:showEditForm()">×</a>
-                            <p>In order to edit your email address, please enter your email address in the form below.</p>
+                            <p>In order to edit or delete your listing, please enter your email address in the form below.</p>
                             $RequestEditForm
                         </div>
                         <div id="blanket-mobile"></div>
@@ -139,7 +139,7 @@
                         <input type="checkbox" name="Writer" checked="true" onclick="updateMarkers()"/> Support - Writer
                     </label>
                     <br />
-                    <button onclick="showEntryForm()">Add Entry</button><button onclick="showEditForm()">Edit Entry</button>
+                    <button onclick="showEntryForm()">Add Entry</button><button onclick="showEditForm()">Edit/Delete Entry</button>
                 </div>
             </div>
             <% require css("contributor_maps/templates/css/style.css") %>
