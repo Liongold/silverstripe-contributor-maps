@@ -123,6 +123,10 @@ html, body {
 .cmaps .leaflet-popup-content h2{
     margin: 2px;
 }
+.cmaps #cmaps_deletewarning {
+    display: none; 
+    margin-top: 15px;
+}
 
 /* CSS3 
 -----*/

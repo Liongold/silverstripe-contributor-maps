@@ -226,6 +226,18 @@ function showEditForm(called) {
         div.style.display = "block";
     }
 }
+function warningDelete(e) {
+    if(e.target.id === "Form_RequestEditForm_action_processDeleteRequestForm") {
+        if(!document.getElementById("cmaps_warning_checkbox").checked) {
+            document.getElementById("cmaps_deletewarning").style.display = "block";
+            document.getElementById("cmaps_editemail").style.height = "350px";
+            e.preventDefault();
+            return false;
+        }else{
+            alert("test");
+        }
+    }
+}
 window.onload = function(){
     var notification = document.getElementById("cmaps_notification");
     if(notification) {
@@ -242,5 +254,6 @@ window.onload = function(){
         }
     });
     document.getElementById("blanket-mobile").addEventListener('click', openSideBar, false);
+    document.getElementById("Form_RequestEditForm_action_processDeleteRequestForm").addEventListener("click", warningDelete, false);
 };
 google.maps.event.addDomListener(window, 'load', initialize);

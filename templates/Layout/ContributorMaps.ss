@@ -42,6 +42,11 @@
                             <a id="close_registration" href="javascript:showEditForm()">×</a>
                             <p>In order to edit or delete your listing, please enter your email address in the form below.</p>
                             $RequestEditForm
+                            <div id="cmaps_deletewarning">
+                                <p><input type="checkbox" id="cmaps_warning_checkbox" /> I understand that deleting an entry is permanent and can't be undone. </p>
+                                <p>If you request the deletion of your entry, we will send you an email with a link that you can visit in order to verify that you
+                                made the request. The link will expire in a day. </p>
+                            </div>
                         </div>
                         <div id="blanket-mobile"></div>
                         <div class="toc-mobile">
