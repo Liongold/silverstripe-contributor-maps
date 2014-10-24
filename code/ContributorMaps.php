@@ -230,7 +230,7 @@
                 }else{
                     return new ArrayData(array(
                         'Status' => 'error',
-                        'Message' => 'Your request to edit your listing has not submitted due to an error. Please try again later. '
+                        'Message' => 'Your request to edit your listing has not submitted due to an error. Please check the entered email address and try again. '
                     ));
                 }
             }else if($this->request->getVar('action') === "delete") {
