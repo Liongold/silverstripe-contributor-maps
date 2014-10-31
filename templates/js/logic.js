@@ -284,11 +284,5 @@ window.onload = function(){
     }else if(document.getElementById("Form_RegistrationForm_action_processEditForm")) {
         document.getElementById("Form_RegistrationForm_action_processEditForm").addEventListener("click", checkLocation, false);
     }
-    /*$('#Form_RegistrationForm').submit(function(e) {
-    e.preventDefault();
-    //Do your stuff
-    alert('Form was not submitted!');
-    checkLocation(e);
-    });*/
 };
 google.maps.event.addDomListener(window, 'load', initialize);
