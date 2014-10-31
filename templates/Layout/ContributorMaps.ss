@@ -173,6 +173,11 @@
                     this.Quality_Assurance = Quality_Assurance;
                     this.Writer = Writer;
                 }
+                <% if $Registered == 3 %>
+                var current = document.getElementById("Form_RegistrationForm_Location").value;
+                <% else %>
+                var current = "";
+                <% end_if %>
                 var data = [
                 <% loop $DataOutput %>
                     new DataSet("$Name $Surname", "$Email",

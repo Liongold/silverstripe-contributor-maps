@@ -238,6 +238,30 @@ function warningDelete(e) {
         }
     }
 }
+function checkLocation(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    var newlocation = document.getElementById("Form_RegistrationForm_Location").value;
+    if(newlocation !== current) {
+        geocoder.geocode({address:newlocation}, function(results, status) {
+            if(status == google.maps.GeocoderStatus.ZERO_RESULTS) {
+                var elem = document.getElementById("Location_Error");
+                if(elem) {
+                    elem.parentNode.removeChild(elem);
+                }
+                var span = document.createElement("span");
+                span.className = "message bad";
+                span.id = "Location_Error";
+                span.innerHTML = "This location seems to be invalid. Please check the location and try again.";
+                document.getElementById("Location").appendChild(span);
+                document.getElementById("Email").scrollIntoView();
+                return false;
+            }else{
+                document.getElementById("Form_RegistrationForm").submit();
+            }
+        });
+    }
+}
 window.onload = function(){
     var notification = document.getElementById("cmaps_notification");
     if(notification) {
@@ -255,5 +279,16 @@ window.onload = function(){
     });
     document.getElementById("blanket-mobile").addEventListener('click', openSideBar, false);
     document.getElementById("Form_RequestEditForm_action_processDeleteRequestForm").addEventListener("click", warningDelete, false);
+    if(document.getElementById("Form_RegistrationForm_action_processForm")) {
+        document.getElementById("Form_RegistrationForm_action_processForm").addEventListener("click", checkLocation, false);
+    }else if(document.getElementById("Form_RegistrationForm_action_processEditForm")) {
+        document.getElementById("Form_RegistrationForm_action_processEditForm").addEventListener("click", checkLocation, false);
+    }
+    /*$('#Form_RegistrationForm').submit(function(e) {
+    e.preventDefault();
+    //Do your stuff
+    alert('Form was not submitted!');
+    checkLocation(e);
+    });*/
 };
 google.maps.event.addDomListener(window, 'load', initialize);

@@ -127,6 +127,13 @@ html, body {
     display: none; 
     margin-top: 15px;
 }
+#Form_RegistrationForm_HeaderFieldSkills {
+    text-align: left;
+    margin-top: 15px;
+}
+.field.checkbox {
+    margin-left: 15px;
+}
 
 /* CSS3 
 -----*/
