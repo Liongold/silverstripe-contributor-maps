@@ -101,8 +101,10 @@
                 $form->loadDataFrom($memory);
                 Session::clear("FormInfo.{$form->FormName()}_Edit.data");
             }else{
-                $form->loadDataFrom(Session::get("FormInfo.{$form->FormName()}.data"));
-                Session::clear("FormInfo.{$form->FormName()}.data");
+                if(Session::get("FormInfo.{$form->FormName()}.data")) {
+                    $form->loadDataFrom(Session::get("FormInfo.{$form->FormName()}.data"));
+                    Session::clear("FormInfo.{$form->FormName()}.data");
+                }
             }
             return $form;
         }
